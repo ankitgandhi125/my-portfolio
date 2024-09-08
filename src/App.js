@@ -1,33 +1,64 @@
 import React, { useState } from 'react';
 import './App.css';
 
+// Modal Component
+function Modal({ src, alt, onClose }) {
+  return (
+    <div className="modal" onClick={onClose}>
+      <div className="modal-content">
+        <button className="modal-close" onClick={onClose}>&times;</button>
+        <img src={src} alt={alt} />
+      </div>
+    </div>
+  );
+}
+
 const photos = [
-  { id: 1, src: '/placeholder-1.jpg', alt: 'Nature landscape 1', category: 'Nature' },
-  { id: 2, src: '/placeholder-2.jpg', alt: 'Urban cityscape 1', category: 'Urban' },
-  { id: 3, src: '/placeholder-3.jpg', alt: 'Portrait of a person 1', category: 'Portrait' },
-  { id: 4, src: '/placeholder-4.jpg', alt: 'Nature landscape 2', category: 'Nature' },
-  { id: 5, src: '/placeholder-5.jpg', alt: 'Urban cityscape 2', category: 'Urban' },
-  { id: 6, src: '/placeholder-6.jpg', alt: 'Portrait of a person 2', category: 'Portrait' },
-  { id: 7, src: '/placeholder-7.jpg', alt: 'Nature landscape 3', category: 'Nature' },
-  { id: 8, src: '/placeholder-8.jpg', alt: 'Urban cityscape 3', category: 'Urban' },
+  { id: 1, src: '/images/NOLA/DSCF5413.jpg', alt: 'New Orleans photo 1', category: 'New Orleans' },
+  { id: 2, src: '/images/NOLA/DSCF5426.jpg', alt: 'New Orleans photo 2', category: 'New Orleans' },
+  { id: 3, src: '/images/NOLA/DSCF5437.jpg', alt: 'New Orleans photo 3', category: 'New Orleans' },
+  { id: 4, src: '/images/NOLA/DSCF5441.jpg', alt: 'New Orleans photo 4', category: 'New Orleans' },
+  { id: 5, src: '/images/NOLA/DSCF5475.jpg', alt: 'New Orleans photo 5', category: 'New Orleans' },
 ];
 
 function App() {
   const [activeSection, setActiveSection] = useState('about');
   const [activeCategory, setActiveCategory] = useState('All');
   const [showContact, setShowContact] = useState(false);
+  const [selectedImage, setSelectedImage] = useState(null);
 
   const filteredPhotos = activeCategory === 'All' 
     ? photos 
     : photos.filter(photo => photo.category === activeCategory);
 
+  const openModal = (photo) => {
+    setSelectedImage(photo);
+  };
+
+  const closeModal = () => {
+    setSelectedImage(null);
+  };
+
   return (
     <div className="container">
       <header>
-        <h1>Ankit Gandhi</h1>
-        <p>Risk Analyst</p>
-        <p>Lithic (Privacy.com)</p>
-        <p>Passaic, New Jersey</p>
+        <div className="header-content">
+          <div>
+            <h1>Ankit Gandhi</h1>
+            <p>Risk Analyst</p>
+            <p>Lithic (Privacy.com)</p>
+            <p>Passaic, New Jersey</p>
+          </div>
+
+          <div className="social-links">
+            <a href="https://www.linkedin.com/in/ankit-g/" target="_blank" rel="noopener noreferrer">
+              <i className="fab fa-linkedin"></i>
+            </a>
+            <a href="https://www.instagram.com/ankitgandhi99/" target="_blank" rel="noopener noreferrer">
+              <i className="fab fa-instagram"></i>
+            </a>
+          </div>
+        </div>
       </header>
 
       <nav>
@@ -87,7 +118,7 @@ function App() {
         <main>
           <h2>Photography</h2>
           <div className="photo-categories">
-            {['All', 'Nature', 'Urban', 'Portrait'].map(category => (
+            {['All', 'Nature', 'Urban', 'Portrait', 'New Orleans'].map(category => (
               <button 
                 key={category}
                 onClick={() => setActiveCategory(category)}
@@ -99,25 +130,29 @@ function App() {
           </div>
           <div className="photo-grid">
             {filteredPhotos.map(photo => (
-              <img key={photo.id} src={photo.src} alt={photo.alt} />
+              <img key={photo.id} src={photo.src} alt={photo.alt} onClick={() => openModal(photo)} />
             ))}
           </div>
         </main>
       )}
 
+      {selectedImage && <Modal src={selectedImage.src} alt={selectedImage.alt} onClose={closeModal} />}
+      
       <footer>
         <button 
-          className="contact-button"
-          onClick={() => setShowContact(!showContact)}
-        >
-          Contact
+              className="contact-button"
+              onClick={() => setShowContact(!showContact)}
+            >
+              Contact
         </button>
-        {showContact && (
-          <div className="contact-info">
-            {/* Add contact information here */}
-          </div>
-        )}
+            {showContact && (
+              <div className="contact-info">
+                <p>You can reach me at:</p>
+                <a href="mailto:ankitgandhi125@gmail.com">ankitgandhi125@gmail.com</a>
+              </div>
+            )}
       </footer>
+
     </div>
   );
 }

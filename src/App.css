@@ -14,6 +14,10 @@ body {
 .container {
   max-width: 800px;
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Vertically centers the content */
+  min-height: 100vh; /* Ensure the container takes up the full height of the viewport */
 }
 
 header {
@@ -84,6 +88,7 @@ button:hover, button.active {
 .photo-grid img {
   width: 100%;
   height: auto;
+  cursor: pointer;
 }
 
 .contact-button {
@@ -92,4 +97,80 @@ button:hover, button.active {
 
 .contact-info {
   margin-top: 10px;
+}
+
+/* Modal Styling */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.modal-content {
+  position: relative;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  max-width: 90vw;
+  max-height: 90vh;
+  overflow: hidden;
+}
+
+.modal-content img {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 80vh;
+  object-fit: contain;
+  border-radius: 10px;
+}
+
+.modal-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: transparent;
+  color: #333;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.modal-close:hover {
+  color: #666;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.social-links a {
+  color: #ffffff;
+  font-size: 24px;
+  margin-left: 15px;
+  text-decoration: none;
+}
+
+.social-links a:hover {
+  color: #0077b5; /* LinkedIn hover */
+}
+
+.social-links a:nth-child(2):hover {
+  color: #e4405f; /* Instagram hover */
+}
+
+.social-links {
+  display: flex;
+  justify-content: flex-end;
 }
