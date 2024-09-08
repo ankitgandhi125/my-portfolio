@@ -1,38 +1,95 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Source+Code+Pro:wght@400;600;700&display=swap');
+
+body {
+  font-family: 'Fira Code', 'Source Code Pro', monospace;
+  background-color: #000000;
+  color: #ffffff;
+  margin: 0;
+  padding: 20px;
+  line-height: 1.5;
+  font-weight: 400;
+  font-size: 14px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.container {
+  max-width: 800px;
+  margin: 0 auto;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+header {
+  margin-bottom: 20px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+h1 {
+  font-size: 28px;
+  margin: 0;
+  font-weight: 700;
 }
 
-.App-link {
-  color: #61dafb;
+h2 {
+  font-size: 22px;
+  margin-top: 30px;
+  margin-bottom: 15px;
+  font-weight: 700;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+h3 {
+  font-size: 16px;
+  margin: 0;
+  font-weight: 600;
+}
+
+p {
+  margin: 5px 0;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+nav {
+  margin: 20px 0;
+}
+
+button {
+  background-color: #000000;
+  color: #ffffff;
+  border: 1px solid #ffffff;
+  padding: 5px 10px;
+  margin-right: 10px;
+  cursor: pointer;
+  font-family: 'Fira Code', 'Source Code Pro', monospace;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+button:hover, button.active {
+  background-color: #ffffff;
+  color: #000000;
+  font-weight: 600;
+}
+
+.job {
+  margin-bottom: 20px;
+}
+
+.photo-categories {
+  margin-bottom: 20px;
+}
+
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.photo-grid img {
+  width: 100%;
+  height: auto;
+}
+
+.contact-button {
+  margin-top: 20px;
+}
+
+.contact-info {
+  margin-top: 10px;
 }
