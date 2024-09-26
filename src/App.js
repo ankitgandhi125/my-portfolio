@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Masonry from 'react-masonry-css';
 import './App.css';
 
 // Modal Component
@@ -12,9 +13,9 @@ function Modal({ src, alt, type, onClose }) {
             src={src} 
             alt={alt} 
             controls 
-            autoPlay
+            autoPlay 
+            loop 
             playsInline
-            controlsList="nodownload"
           />
         ) : (
           <img src={src} alt={alt} />
@@ -134,6 +135,99 @@ function App() {
     setSelectedMedia(null);
   };
 
+  const breakpointColumnsObj = {
+    default: 4,
+    1100: 3,
+    700: 2,
+    500: 1
+  };
+
+        {activeSection === 'photography' && (
+        <main>
+          <h2>Photography</h2>
+          <div className="photo-categories">
+            {['All', 'Mexico', 'New Jersey', 'New York', 'New Orleans', 'San Francisco', 'South Africa', 'Washington DC'].map(category => (
+              <button 
+                key={category}
+                onClick={() => setActiveCategory(category)}
+                className={activeCategory === category ? 'active' : ''}
+              >
+                {category}
+              </button>
+            ))}
+          </div>
+          <Masonry
+            breakpointCols={breakpointColumnsObj}
+            className="my-masonry-grid"
+            columnClassName="my-masonry-grid_column"
+          >
+            {filteredPhotos.map(media => (
+              <div key={media.id} className="media-item" onClick={() => openModal(media)}>
+                {media.type === 'video' ? (
+                  <>
+                    <video
+                      src={media.src}
+                      alt={media.alt}
+                      muted
+                      loop
+                      playsInline
+                    />
+                    <div className="video-overlay">
+                      <span>▶</span>
+                    </div>
+                  </>
+                ) : (
+                  <img src={media.src} alt={media.alt} />
+                )}
+              </div>
+            ))}
+          </Masonry>
+        </main>
+      )}
+
+        {activeSection === 'photography' && (
+        <main>
+          <h2>Photography</h2>
+          <div className="photo-categories">
+            {['All', 'Mexico', 'New Jersey', 'New York', 'New Orleans', 'San Francisco', 'South Africa', 'Washington DC'].map(category => (
+              <button 
+                key={category}
+                onClick={() => setActiveCategory(category)}
+                className={activeCategory === category ? 'active' : ''}
+              >
+                {category}
+              </button>
+            ))}
+          </div>
+          <Masonry
+            breakpointCols={breakpointColumnsObj}
+            className="my-masonry-grid"
+            columnClassName="my-masonry-grid_column"
+          >
+            {filteredPhotos.map(media => (
+              <div key={media.id} className="media-item" onClick={() => openModal(media)}>
+                {media.type === 'video' ? (
+                  <>
+                    <video
+                      src={media.src}
+                      alt={media.alt}
+                      muted
+                      loop
+                      playsInline
+                    />
+                    <div className="video-overlay">
+                      <span>▶</span>
+                    </div>
+                  </>
+                ) : (
+                  <img src={media.src} alt={media.alt} />
+                )}
+              </div>
+            ))}
+          </Masonry>
+        </main>
+      )}
+
   return (
     <div className="container">
       <header>
@@ -209,7 +303,7 @@ function App() {
         </main>
       )}
 
-      {activeSection === 'photography' && (
+{activeSection === 'photography' && (
         <main>
           <h2>Photography</h2>
           <div className="photo-categories">
@@ -223,7 +317,11 @@ function App() {
               </button>
             ))}
           </div>
-          <div className="photo-grid">
+          <Masonry
+            breakpointCols={breakpointColumnsObj}
+            className="my-masonry-grid"
+            columnClassName="my-masonry-grid_column"
+          >
             {filteredPhotos.map(media => (
               <div key={media.id} className="media-item" onClick={() => openModal(media)}>
                 {media.type === 'video' ? (
@@ -244,7 +342,7 @@ function App() {
                 )}
               </div>
             ))}
-          </div>
+          </Masonry>
         </main>
       )}
 
